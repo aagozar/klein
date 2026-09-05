@@ -193,7 +193,10 @@ section.block.tint .grid .card{ background: var(--paper-deep); }
 
 @media (max-width: 640px){
   .log-row-head{ grid-template-columns: 1fr auto; }
-  .log-row-head .desc{ grid-column: 1 / -1; order: 3; }
+  .log-row-head .platform{ order: 1; }
+  .log-chev{ order: 2; }
+  .log-row-head .status{ order: 3; justify-self: start; }
+  .log-row-head .desc{ grid-column: 1 / -1; order: 4; }
 }
 
 /* Personal placeholder */
@@ -305,6 +308,20 @@ header.hero:has(.bio[open]) .hero-photo-face{
 
 @media (max-width: 900px){
   .hero-photo-flip{ width: 120px; height: 120px; }
+
+  .bio{ margin-top: 24px; }
+
+  header.hero:has(.bio[open]) .hero-photo-flip{
+    transform: none;
+    position: static;
+    z-index: auto;
+  }
+  header.hero:has(.bio[open]) .hero-photo-flip-inner{
+    transform: none;
+  }
+  header.hero:has(.bio[open]) .hero-photo-face{
+    box-shadow: none;
+  }
 }
 
 .skill-list{
