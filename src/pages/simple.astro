@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SimpleNav from '../components/SimpleNav.astro';
 import '../styles/simple.css';
+import { logEntries } from '../data/log';
 ---
 <Layout title="Klein — Structural Civil Engineer" description="L.K.P. Ramiro — Structural Civil Engineer. Seismic testing, structural design, continuous learning.">
   <main class="s-main">
@@ -62,6 +63,34 @@ import '../styles/simple.css';
         </span>
       </li>
     </ul>
+
+    <hr>
+
+    <section class="s-log">
+      <h2 class="s-section-title">Learning log</h2>
+      <p class="s-lede">Software and courses I'm working through, applied to structural engineering.</p>
+      <div class="s-log-list">
+        {logEntries.map((entry) => (
+          <details class="s-log-item">
+            <summary>
+              <span class="s-log-platform">{entry.platform}</span>
+              <span class="s-log-when">{entry.statusLabel}</span>
+            </summary>
+            <div class="s-log-body">
+              <p class="s-log-desc">{entry.desc}</p>
+              <p>{entry.detail}</p>
+              {entry.files && entry.files.length > 0 && (
+                <ul>
+                  {entry.files.map((file) => (
+                    <li><a href={file.url} target="_blank" rel="noopener">{file.label}</a></li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
 
     <hr>
 
@@ -194,6 +223,62 @@ import '../styles/simple.css';
   }
   .s-bio a:hover{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
 
+  .s-section-title{
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+
+  .s-log-list{
+    margin-top: 24px;
+  }
+  .s-log-item summary{
+    position: relative;
+    padding: 16px 90px 16px 0;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .s-log-when{
+    position: absolute;
+    top: 16px;
+    right: 0;
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+  .s-log-platform{
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .s-log-body{
+    padding: 0 0 20px 20px;
+    border-left: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .s-log-body p{ margin: 0 0 12px; }
+  .s-log-body p:last-child{ margin-bottom: 0; }
+  .s-log-desc{
+    font-style: italic;
+    color: var(--ink);
+  }
+  .s-log-body ul{
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .s-log-body a{
+    color: var(--s-link);
+    text-decoration: underline;
+    text-decoration-color: var(--s-link);
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+    font-size: 0.9rem;
+  }
+  .s-log-body a:hover{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
+
   .s-timeline{
     list-style: none;
     margin: 0;
@@ -260,6 +345,8 @@ import '../styles/simple.css';
     .s-photo{ width: 64px; height: 64px; }
     .s-timeline li{ flex-direction: column; gap: 4px; }
     .s-when{ flex: none; }
+    .s-log-item summary{ padding-right: 76px; }
+    .s-log-when{ font-size: 0.8rem; }
   }
 </style>
 
