@@ -96,6 +96,11 @@
   font-size: 0.95rem;
 }
 
+@media (max-width: 640px){
+  .s-main{ padding-top: 32px; }
+  .s-nav{ margin-bottom: 24px; }
+}
+
 @media (max-width: 480px){
   .s-list a{ flex-direction: column; gap: 4px; }
   .s-list time{ flex: none; }
