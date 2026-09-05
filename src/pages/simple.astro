@@ -67,7 +67,6 @@ import { logEntries } from '../data/log';
     <hr>
 
     <section class="s-log">
-      <h2 class="s-section-title">Learning log</h2>
       <p class="s-lede">Software and courses I'm working through, applied to structural engineering.</p>
       <div class="s-log-list">
         {logEntries.map((entry) => (
@@ -223,12 +222,6 @@ import { logEntries } from '../data/log';
   }
   .s-bio a:hover{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
 
-  .s-section-title{
-    font-weight: 600;
-    font-size: 1.4rem;
-    margin: 0 0 8px;
-    color: var(--ink);
-  }
 
   .s-log-list{
     margin-top: 24px;
