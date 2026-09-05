@@ -77,8 +77,10 @@ import '../styles/simple.css';
     <hr>
 
     <p class="s-legal">
-      <span>Eng. Laurence Klein Patrick Ramiro</span>
-      <span>P.IVA 13758170966</span>
+      <span class="s-legal-id">
+        <span>Eng. Laurence Klein Patrick Ramiro</span>
+        <span>P.IVA 13758170966</span>
+      </span>
       <span>© 2026</span>
     </p>
   </main>
@@ -99,6 +101,10 @@ import '../styles/simple.css';
     background: none;
     cursor: zoom-in;
     border-radius: 50%;
+  }
+  .s-photo-btn:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 3px var(--brass);
   }
   .s-photo{
     display: block;
@@ -238,10 +244,16 @@ import '../styles/simple.css';
     margin: 0;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 8px 24px;
+    gap: 4px 16px;
     font-size: 0.9rem;
     color: var(--ink-faint);
+  }
+  .s-legal-id{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   @media (max-width: 480px){
