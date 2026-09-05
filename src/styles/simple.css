@@ -1,0 +1,165 @@
+/* Shared styles for the dead-simple (/simple) section of the site.
+   Only two typefaces: --serif for the page title, --sans for everything else.
+   Uses design tokens defined in global.css (paper/ink/brass/line/serif/sans). */
+
+:root{
+  --s-link: #2952CC;
+  --s-link-hover: #1B3A99;
+}
+
+.s-main{
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 96px 24px 64px;
+}
+
+.s-main hr{
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+
+.s-nav{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 48px;
+}
+.s-nav a{
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.s-nav a:hover{ color: var(--s-link); }
+.s-nav a.s-nav-active{ color: var(--ink); }
+
+.s-page-title{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  line-height: 1.1;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.s-lede{
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+/* List pattern: date + title in one row, used for Pensieri/Vita indexes */
+.s-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.s-list a{
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  align-items: baseline;
+  color: inherit;
+  text-decoration: none;
+}
+.s-list time{
+  flex: 0 0 90px;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+.s-list .s-list-text{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.s-list h2{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--s-link);
+  text-decoration: underline;
+  text-decoration-color: var(--s-link);
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+.s-list a:hover h2{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
+.s-list p{
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.s-empty{
+  color: var(--ink-faint);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 480px){
+  .s-list a{ flex-direction: column; gap: 4px; }
+  .s-list time{ flex: none; }
+}
+
+/* Single entry page */
+.s-entry-meta{
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+.s-entry-body{
+  margin-top: 24px;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.s-entry-body p{ margin: 0 0 20px; }
+.s-entry-body p:last-child{ margin-bottom: 0; }
+.s-entry-body img{
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  margin: 28px 0;
+}
+.s-entry-body a{
+  color: var(--s-link);
+  text-decoration: underline;
+  text-decoration-color: var(--s-link);
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+.s-entry-body a:hover{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
+
+/* Progress page */
+.s-weeks{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.s-week-label{
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin: 0 0 16px;
+}
+.s-week-metrics{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+.s-metric{ display: flex; flex-direction: column; gap: 4px; }
+.s-metric-label{
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+.s-metric-value{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.s-metric-value--text{
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}

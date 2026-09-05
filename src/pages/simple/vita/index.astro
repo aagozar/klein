@@ -1,0 +1,44 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SimpleNav from '../../../components/SimpleNav.astro';
+import '../../../styles/simple.css';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('Vita')).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0)
+);
+---
+<Layout title="What I value — Klein">
+  <main class="s-main">
+    <SimpleNav />
+
+    <header>
+      <h1 class="s-page-title">What I value</h1>
+      <p class="s-lede">Notes on the things outside engineering that matter to me.</p>
+    </header>
+
+    <hr>
+
+    {entries.length === 0 ? (
+      <p class="s-empty">No entries yet.</p>
+    ) : (
+      <ul class="s-list">
+        {entries.map((entry) => (
+          <li>
+            <a href={`/simple/vita/${entry.slug}`}>
+              {entry.data.date && (
+                <time datetime={entry.data.date.toISOString()}>
+                  {entry.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </time>
+              )}
+              <span class="s-list-text">
+                <h2>{entry.data.title}</h2>
+                <p>{entry.data.summary}</p>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </main>
+</Layout>

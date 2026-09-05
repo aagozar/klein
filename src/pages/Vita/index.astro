@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const entries = (await getCollection('Vita')).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0)
+);
+---
+<Layout title="Vita — Klein">
+  <Nav />
+  <section class="block entry-index">
+    <a href="/#Personal" class="back-link">← Personal</a>
+    <div class="section-head">
+      <div class="tag"><b>Personal</b></div>
+      <h2>Vita</h2>
+    </div>
+    <div class="entry-list">
+      {entries.map((entry) => (
+        <a href={`/Vita/${entry.slug}`} class="entry-list-item">
+          <h3>{entry.data.title}</h3>
+          <p>{entry.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Footer />
+</Layout>

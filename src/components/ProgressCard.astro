@@ -1,0 +1,34 @@
+---
+interface Props {
+  week: string;
+  tradingReturnPct: number | null;
+  runningKm: number | null;
+  trainingFocus: string;
+}
+
+const { week, tradingReturnPct, runningKm, trainingFocus } = Astro.props;
+
+const tradingDisplay =
+  tradingReturnPct === null
+    ? "—"
+    : `${tradingReturnPct > 0 ? "+" : ""}${tradingReturnPct}%`;
+
+const runningDisplay = runningKm === null ? "—" : `${runningKm} km`;
+---
+<div class="progress-card">
+  <div class="progress-week">{week}</div>
+  <div class="progress-metrics">
+    <div class="progress-metric">
+      <span class="progress-label">Trading</span>
+      <span class="progress-value">{tradingDisplay}</span>
+    </div>
+    <div class="progress-metric">
+      <span class="progress-label">Running</span>
+      <span class="progress-value">{runningDisplay}</span>
+    </div>
+    <div class="progress-metric">
+      <span class="progress-label">Training focus</span>
+      <span class="progress-value progress-value--text">{trainingFocus}</span>
+    </div>
+  </div>
+</div>

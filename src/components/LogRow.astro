@@ -1,0 +1,35 @@
+---
+interface LogFile {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  platform: string;
+  desc: string;
+  status: "corso" | "avviare";
+  statusLabel: string;
+  detail: string;
+  files?: LogFile[];
+}
+
+const { platform, desc, status, statusLabel, detail, files = [] } = Astro.props;
+---
+<details class="log-row" name="log-accordion">
+  <summary class="log-row-head">
+    <div class="platform">{platform}</div>
+    <div class="desc">{desc}</div>
+    <div class={`status ${status}`}>{statusLabel}</div>
+    <span class="log-chev" aria-hidden="true">+</span>
+  </summary>
+  <div class="log-row-body">
+    <p>{detail}</p>
+    {files.length > 0 && (
+      <ul class="log-files">
+        {files.map((file) => (
+          <li><a href={file.url} target="_blank" rel="noopener">{file.label}</a></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</details>

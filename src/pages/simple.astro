@@ -1,0 +1,267 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SimpleNav from '../components/SimpleNav.astro';
+import '../styles/simple.css';
+---
+<Layout title="Klein — Structural Civil Engineer" description="L.K.P. Ramiro — Structural Civil Engineer. Seismic testing, structural design, continuous learning.">
+  <main class="s-main">
+    <SimpleNav />
+
+    <header class="s-header">
+      <div class="s-header-text">
+        <h1 class="s-name">L.K.P. <em>Ramiro</em></h1>
+        <p class="s-role">Structural Civil Engineer</p>
+        <p class="s-location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Pavia, Italy
+        </p>
+      </div>
+      <button type="button" class="s-photo-btn" aria-haspopup="dialog">
+        <img src="/profilo.jpg" alt="L.K.P. Ramiro" class="s-photo" />
+      </button>
+    </header>
+
+    <dialog class="s-photo-dialog" aria-label="Profile photo">
+      <div class="s-photo-flip">
+        <div class="s-photo-flip-inner">
+          <img src="/profilo.jpg" alt="L.K.P. Ramiro" class="s-photo-flip-face s-photo-flip-front" />
+          <img src="/profilo-2.jpg" alt="L.K.P. Ramiro" class="s-photo-flip-face s-photo-flip-back" />
+        </div>
+      </div>
+    </dialog>
+
+    <hr>
+
+    <section class="s-bio">
+      <p>I'm a structural engineer with a technical background and a strong bias for experimental rigor. My path started with a passion for technical drawing, continued through a Master's in Structural Civil Engineering at the University of Pavia, and my professional engineering license.</p>
+      <p>I believe in building to understand before defending an idea, and in finding rigor even where the work is still a construction site.</p>
+    </section>
+
+    <hr>
+
+    <ul class="s-timeline">
+      <li>
+        <span class="s-when">Now</span>
+        <span class="s-what">
+          <strong>Scientific Technical Operator, Eucentre Foundation</strong>
+          <span class="s-tags">Seismic testing · Isolators · Lab data</span>
+        </span>
+      </li>
+      <li>
+        <span class="s-when">2023–now</span>
+        <span class="s-what">
+          <strong>Surveying &amp; modeling, Eucentre</strong>
+          <span class="s-tags">3D scanning · Structural modeling · Drone (UAS)</span>
+        </span>
+      </li>
+      <li>
+        <span class="s-when">Ongoing</span>
+        <span class="s-what">
+          <strong>Independent study</strong>
+          <span class="s-tags">Python · OpenSeesPy · MATLAB · Eurocode steel</span>
+        </span>
+      </li>
+    </ul>
+
+    <hr>
+
+    <section class="s-bio">
+      <p>Currently, I work as a Scientific Technical Operator at the Eucentre Foundation, focusing mainly on post-processing experimental lab data. In parallel, I'm growing toward independent structural design work, staying constantly up to date.</p>
+      <p>Outside of work I write scattered <a href="/simple/pensieri">thoughts</a>, track my <a href="/simple/progress">progress</a>, and pay attention to <a href="/simple/vita">what I value</a>.</p>
+    </section>
+
+    <p class="s-links">
+      You can reach me by email at <a href="mailto:info@kleinramiro.com">info@kleinramiro.com</a>.
+    </p>
+
+    <hr>
+
+    <p class="s-legal">
+      <span>Eng. Laurence Klein Patrick Ramiro</span>
+      <span>P.IVA 13758170966</span>
+      <span>© 2026</span>
+    </p>
+  </main>
+</Layout>
+
+<style>
+  .s-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+  .s-photo-btn{
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: 50%;
+  }
+  .s-photo{
+    display: block;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line-strong);
+    filter: grayscale(15%);
+  }
+
+  .s-photo-dialog{
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: none;
+    max-height: none;
+  }
+  .s-photo-dialog::backdrop{
+    background: rgba(27,31,39,0.82);
+  }
+  .s-photo-flip{
+    width: min(70vw, 420px);
+    height: min(70vw, 420px);
+    perspective: 1200px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  .s-photo-flip-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  .s-photo-flip:hover .s-photo-flip-inner{
+    transform: rotateY(180deg);
+  }
+  .s-photo-flip-face{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(15%);
+    backface-visibility: hidden;
+  }
+  .s-photo-flip-back{
+    transform: rotateY(180deg);
+  }
+  .s-name{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.2rem, 6vw, 3rem);
+    line-height: 1.05;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .s-name em{ font-style: italic; font-weight: 400; }
+  .s-role{
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+  .s-location{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 0;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+  }
+  .s-location svg{ flex-shrink: 0; }
+
+  .s-bio p{
+    margin: 0 0 16px;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+  .s-bio p:last-child{ margin-bottom: 0; }
+  .s-bio a{
+    color: var(--s-link);
+    text-decoration: underline;
+    text-decoration-color: var(--s-link);
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+  .s-bio a:hover{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
+
+  .s-timeline{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .s-timeline li{
+    display: flex;
+    gap: 20px;
+  }
+  .s-when{
+    flex: 0 0 84px;
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+    padding-top: 2px;
+  }
+  .s-what{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .s-what strong{
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 1rem;
+  }
+  .s-tags{
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+
+  .s-links{
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+  .s-links a{
+    color: var(--s-link);
+    text-decoration: underline;
+    text-decoration-color: var(--s-link);
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+  .s-links a:hover{ color: var(--s-link-hover); text-decoration-color: var(--s-link-hover); }
+
+  .s-legal{
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 480px){
+    .s-photo{ width: 64px; height: 64px; }
+    .s-timeline li{ flex-direction: column; gap: 4px; }
+    .s-when{ flex: none; }
+  }
+</style>
+
+<script>
+  const photoBtn = document.querySelector<HTMLButtonElement>('.s-photo-btn');
+  const photoDialog = document.querySelector<HTMLDialogElement>('.s-photo-dialog');
+
+  photoBtn?.addEventListener('click', () => {
+    photoDialog?.showModal();
+  });
+
+  photoDialog?.addEventListener('click', (event) => {
+    if (event.target === photoDialog) {
+      photoDialog.close();
+    }
+  });
+</script>

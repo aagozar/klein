@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SimpleNav from '../../components/SimpleNav.astro';
+import '../../styles/simple.css';
+import { progressWeeks } from '../../data/progress';
+---
+<Layout title="Progress — Klein">
+  <main class="s-main">
+    <SimpleNav />
+
+    <header>
+      <h1 class="s-page-title">Progress</h1>
+      <p class="s-lede">A running record of the week: trading performance, distance covered, and what I'm training for.</p>
+    </header>
+
+    <hr>
+
+    {progressWeeks.length === 0 ? (
+      <p class="s-empty">No data yet.</p>
+    ) : (
+      <div class="s-weeks">
+        {progressWeeks.map((w) => (
+          <div class="s-week">
+            <p class="s-week-label">{w.week}</p>
+            <div class="s-week-metrics">
+              <div class="s-metric">
+                <span class="s-metric-label">Trading return</span>
+                <span class="s-metric-value">{w.tradingReturnPct !== null ? `${w.tradingReturnPct}%` : "—"}</span>
+              </div>
+              <div class="s-metric">
+                <span class="s-metric-label">Running</span>
+                <span class="s-metric-value">{w.runningKm !== null ? `${w.runningKm} km` : "—"}</span>
+              </div>
+              <div class="s-metric">
+                <span class="s-metric-label">Training focus</span>
+                <span class="s-metric-value s-metric-value--text">{w.trainingFocus}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </main>
+</Layout>

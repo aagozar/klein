@@ -1,0 +1,122 @@
+---
+import { progressWeeks } from '../data/progress';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import { experience } from '../data/experience';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Seismograph from '../components/Seismograph.astro';
+import Footer from '../components/Footer.astro';
+import LogRow from '../components/LogRow.astro';
+import { logEntries } from '../data/log';
+const pensieriEntries = await getCollection('Pensieri');
+const vitaEntries = await getCollection('Vita');
+---
+<Layout title="Klein — Structural Civil Engineer">
+  <Nav />
+
+  <div id="top"></div>
+<header class="hero">
+  <div class="eyebrow">Equilibrium is God</div>
+
+  <div class="hero-top">
+    <div class="hero-text">
+      <h1>L.K.P. <em>Ramiro</em></h1>
+      <p class="tagline">Civil engineering is not a set of certainties, but a framework to master complexity. A journey of relentless learning to bring form and safety to our future.</p>
+  </div>
+  <div class="hero-photo-flip">
+    <div class="hero-photo-flip-inner">
+      <img src="/profilo.jpg" alt="Laurence Klein Patrick Ramiro" class="hero-photo-face hero-photo-front" />
+      <img src="/profilo-2.jpg" alt="Laurence Klein Patrick Ramiro" class="hero-photo-face hero-photo-back" />
+    </div>
+  </div>
+</div>
+
+
+  <details class="bio">
+    <summary>Who am I?</summary>
+    <p class="bio-text">
+     I was born and raised in Italy to Filipino parents. My path in civil engineering began with a strong passion for technical drawing, which I later deepened during my technical high school studies in the building sector. I completed my education at the University of Pavia, earning a Master of Science in Structural Civil Engineering, and subsequently obtained my professional engineering license.
+
+Currently, I work as a Scientific Technical Operator at the Eucentre Foundation, focusing primarily on the post-processing of experimental laboratory data. As an independent professional, I see my growth expanding into structural design and analysis; for this reason, I am dedicated to continuous self-improvement and staying constantly up-to-date to take on increasingly challenging and significant projects.
+    </p>
+  </details>
+</header>
+
+  <Seismograph />
+
+  <section id="Professional" class="block">
+    <div class="section-head">
+      <div class="tag"><b>Rev. 2026</b><span>Status: Active</span></div>
+      <h2>Past, Present &amp; Future</h2>
+    </div>
+    <p class="lede">
+      My professional work spans experimental laboratory testing at Eucentre and engineering consultancies for design firms and private clients.
+
+Driven by continuous professional growth, this section highlights my active projects, my work ethic, and my goals.
+    </p>
+    <div class="grid">
+  {experience.map((entry) => <ExperienceCard {...entry} />)}
+</div>
+    </div>
+  </section>
+
+  <section id="Learning" class="block tint">
+    <div class="inner">
+      <div class="section-head">
+        <div class="tag"><b>Log</b><span>Updated</span></div>
+        <h2>Learning log</h2>
+      </div>
+      <p class="lede">
+        Here, I keep an open log of my learning journey: software tools applied to structural engineering, online courses to expand my portfolio, and engineering concepts studied in books and put to the test in the field as real projects arrive.
+      </p>
+      <div class="log">
+        {logEntries.map((entry) => <LogRow {...entry} />)}
+      </div>
+    </div>
+  </section>
+
+<section id="Personal" class="block">
+  <div class="section-head">
+    <div class="tag"><b>More than an engineer</b></div>
+    <h2>Walk in my life</h2>
+  </div>
+  <p class="lede">This space is meant to be shared</p>
+
+  <div class="placeholder-grid">
+    <div class="ph-box ph-box--active">
+    <div>
+      <h3><a href="/Pensieri">Thinking..</a></h3>
+      <ul class="ph-list">
+        {pensieriEntries.map((entry: CollectionEntry<'pensieri'>) => (
+          <li><a href={`/Pensieri/${entry.slug}`}>{entry.data.title}</a></li>
+        ))}
+      </ul>
+    </div>
+    <span class="note">{pensieriEntries.length} {pensieriEntries.length === 1 ? "entry" : "entries"}</span>
+  </div>
+
+  <div class="ph-box ph-box--active">
+    <div>
+      <h3><a href="/Vita">What I value</a></h3>
+      <ul class="ph-list">
+        {vitaEntries.map((entry: CollectionEntry<'vita'>) => (
+          <li><a href={`/vita/${entry.slug}`}>{entry.data.title}</a></li>
+        ))}
+      </ul>
+    </div>
+    <span class="note">{vitaEntries.length} {vitaEntries.length === 1 ? "entry" : "entries"}</span>
+  </div>
+
+  <div class="ph-box ph-box--active">
+  <div>
+    <h3><a href="/Progress">Progress</a></h3>
+    <p class="ph-preview">{progressWeeks[0]?.week ?? "No data yet"}</p>
+  </div>
+  <span class="note">{progressWeeks.length} {progressWeeks.length === 1 ? "week logged" : "weeks logged"}</span>
+</div>
+  </section>
+
+  <Footer />
+</Layout>

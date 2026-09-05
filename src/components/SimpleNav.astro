@@ -1,0 +1,20 @@
+---
+const { pathname } = Astro.url;
+
+const links = [
+  { href: '/simple', label: 'Home' },
+  { href: '/simple/pensieri', label: 'Thoughts' },
+  { href: '/simple/progress', label: 'Progress' },
+  { href: '/simple/vita', label: 'Value' },
+];
+
+function isActive(href: string) {
+  if (href === '/simple') return pathname === '/simple' || pathname === '/simple/';
+  return pathname.startsWith(href);
+}
+---
+<nav class="s-nav">
+  {links.map((link) => (
+    <a href={link.href} class={isActive(link.href) ? 's-nav-active' : ''}>{link.label}</a>
+  ))}
+</nav>

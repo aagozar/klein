@@ -1,0 +1,37 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SimpleNav from '../../../components/SimpleNav.astro';
+import '../../../styles/simple.css';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('Vita');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Layout title={`${entry.data.title} — Klein`}>
+  <main class="s-main">
+    <SimpleNav />
+
+    <article>
+      <div class="s-entry-meta">
+        <span>Life</span>
+        {entry.data.date && (
+          <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+        )}
+      </div>
+      <h1 class="s-page-title">{entry.data.title}</h1>
+      <div class="s-entry-body">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>
