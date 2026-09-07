@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Seismograph from '../components/Seismograph.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout title="404 — Klein" description="Page not found.">
+  <Nav />
+
+  <header class="hero">
+    <div class="eyebrow">Error 404</div>
+    <h1>Node <em>not found</em></h1>
+    <p class="tagline">The element you're looking for isn't in the model. It may have been moved, renamed, or never built.</p>
+    <a href="/" class="back-link">← Back home</a>
+  </header>
+
+  <Seismograph />
+
+  <Footer />
+</Layout>
