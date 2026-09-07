@@ -259,18 +259,26 @@ footer{
   transform: rotateY(180deg);
 }
 
-header.hero:has(.bio[open]) .hero-photo-flip{
-  transform: scale(1.5);
-  position: relative;
-  z-index: 5;
-}
 header.hero:has(.bio[open]) .hero-photo-flip-inner{
-  transform: rotateY(180deg) translateX(50px) translateY(50px);
+  transform: rotateY(180deg);
 }
 header.hero:has(.bio[open]) .hero-photo-face{
   border-color: var(--brass);
   filter: grayscale(15%);
   box-shadow: 0 0px 30px rgba(27,31,39,0.18);
+}
+
+/* The zoom+shift flip only has room on wide desktop viewports;
+   on tablet widths it would push the enlarged photo over the text. */
+@media (min-width: 1280px){
+  header.hero:has(.bio[open]) .hero-photo-flip{
+    transform: scale(1.5);
+    position: relative;
+    z-index: 5;
+  }
+  header.hero:has(.bio[open]) .hero-photo-flip-inner{
+    transform: rotateY(180deg) translateX(50px) translateY(50px);
+  }
 }
 
 .bio-text,
@@ -281,7 +289,7 @@ header.hero:has(.bio[open]) .hero-photo-face{
   hyphens: auto;
 }
 
-.bio{ margin-top: -120px; }
+.bio{ margin-top: 28px; }
 .bio summary{
   cursor: pointer; list-style: none;
   font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft);
