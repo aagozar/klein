@@ -34,3 +34,5 @@ I am poorly letting this feeling of staying secure that I shutted down every lit
 Maybe are the people.
 
 Stardards and expectations, what a hell.
+
+GRAZIE MILLE RAGAZZI
